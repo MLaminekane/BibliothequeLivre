@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/BibliothequeLivre.dir/main.cpp.o CMakeFiles/BibliothequeLivre.dir/Livre.cpp.o CMakeFiles/BibliothequeLivre.dir/Etudiant.cpp.o CMakeFiles/BibliothequeLivre.dir/Bibliotheque.cpp.o -o BibliothequeLivre

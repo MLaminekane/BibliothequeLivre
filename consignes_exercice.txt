@@ -1,0 +1,101 @@
+Projet C++ : Mini système de gestion de bibliothèque (version simplifiée et propre)
+==============================================================================
+
+Objectif
+--------
+Créer une petite application console claire et lisible permettant de gérer :
+1. Des livres (ajout, listing, filtrage par catalogue, recherche par titre exact)
+2. Des étudiants (ajout, listing)
+3. Des emprunts (emprunter / rendre un livre, limite de 3 livres par étudiant)
+4. L’affichage lisible et structuré (tableaux alignés, couleurs ANSI facultatives)
+
+État actuel du projet
+---------------------
+Fonctionnalités implémentées :
+- Ajout de livre avec prévention des doublons ISBN
+- Attribution automatique d’un ID unique à chaque livre
+- Listing : tous les livres / par catalogue / seulement disponibles
+- Recherche d’un livre par titre (affichage en « carte »)
+- Ajout d’étudiant avec prévention des doublons (code permanent unique)
+- Emprunt d’un livre : sélection par ID parmi les disponibles
+- Rendu d’un livre : sélection dans la liste des emprunts de l’étudiant
+- Liste globale des livres empruntés (tous les étudiants)
+- Affichages formatés : tableaux alignés (livres, étudiants, emprunts)
+- Code lisible : noms explicites, pas d’abréviations cryptiques
+
+Règles métier
+-------------
+- Un livre est soit Disponible soit Emprunté.
+- Un étudiant ne peut pas emprunter plus de 3 livres simultanément.
+- On ne peut pas ajouter deux livres avec le même ISBN.
+- On ne peut pas ajouter deux étudiants avec le même code permanent.
+- Emprunt impossible si le livre est indisponible ou la limite atteinte.
+
+Classes (version finale simplifiée)
+----------------------------------
+1. Livre
+	- Attributs : id, titre, auteur, annee, isbn, catalogue, disponible
+	- Méthodes : emprunter(), rendre(), afficherInfo(), getters
+2. Etudiant
+	- Attributs : nom, prenom, codePermanent, adresse, nbEmprunts, vecteur de pointeurs vers livres empruntés
+	- Méthodes : emprunterLivre(livre), rendreLivre(livre), afficherInfo(), getters
+3. Bibliotheque
+	- Stocke des vecteurs de livres et d’étudiants (valeurs)
+	- Méthodes : ajouterLivre(), ajouterEtudiant(), rechercherLivreParTitre(), rechercherLivreParId(), rechercherEtudiantParCode(), afficher*...
+
+Décisions techniques
+--------------------
+- Pas d’héritage (simplification pédagogique)
+- Pas d’exceptions : flux logique via booléens
+- Pas de smart pointers : stockage par valeur + pointeurs non possédants vers les livres empruntés
+- Menus structurés : sous-menus Livres / Étudiants / Emprunter / Rendre
+- Variables aux noms explicites (ex: livreIdSelectionne, choixMenuPrincipal)
+
+Style et lisibilité
+-------------------
+Respecter :
+- Pas de `using namespace std;` dans les en-têtes
+- Fonctions courtes et lisibles
+- Affichages regroupés en tableaux lorsqu’il y a plusieurs éléments
+- Couleurs : centralisées dans `ConsoleFormat.h` (facile à désactiver si besoin)
+
+Proposition d’étapes pédagogiques (si vous recréez le projet)
+------------------------------------------------------------
+Étape 1 : Implémenter `Livre` (ajout + affichage simple)
+Étape 2 : Implémenter `Bibliotheque` (ajout / liste / recherche par titre)
+Étape 3 : Implémenter `Etudiant` (sans emprunts)
+Étape 4 : Ajouter logique d’emprunt / retour + limite de 3
+Étape 5 : Améliorer affichages (tableaux, alignements)
+Étape 6 : Ajouter ID auto et sélection d’emprunt par ID
+Étape 7 (optionnel) : Sauvegarde / chargement (fichiers texte)
+
+Idées d’extensions (optionnel)
+------------------------------
+- Persistance (sauvegarde CSV ou JSON minimal)
+- Recherche partielle (préfixe / insensible à la casse)
+- Filtrage multi-critères (auteur + catalogue)
+- Mode sans couleurs (détection variable d’environnement ex: NO_COLOR)
+- Statistiques (compter nombre d’emprunts historiques)
+
+Compilation
+-----------
+cmake -S . -B build
+cmake --build build
+./build/BibliothequeLivre
+
+Utilisation rapide
+------------------
+1. Lancer le programme
+2. Explorer le menu principal
+3. Ajouter un étudiant si nécessaire
+4. Emprunter un livre via son ID
+5. Rendre via le menu "Rendre" (sélection numérotée)
+
+Qualité attendue
+----------------
+- Code qui compile sans warnings majeurs
+- Lisibilité prioritaire sur optimisation
+- Noms explicites
+- Pas de code mort
+
+Fin.

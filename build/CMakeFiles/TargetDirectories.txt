@@ -1,0 +1,3 @@
+/Users/lamine/Projects/Cours/BibliothequeLivre/build/CMakeFiles/BibliothequeLivre.dir
+/Users/lamine/Projects/Cours/BibliothequeLivre/build/CMakeFiles/edit_cache.dir
+/Users/lamine/Projects/Cours/BibliothequeLivre/build/CMakeFiles/rebuild_cache.dir
